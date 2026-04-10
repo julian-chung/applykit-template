@@ -5,6 +5,20 @@ A LaTeX toolkit for building tailored, version-controlled job applications — r
 
 Built with XeLaTeX, bundled fonts, and a snapshot system that archives each application with its content and design settings so you can roll back, reuse, and iterate without starting from scratch.
 
+## Example output
+
+Generated using applykit-template. Replace the content with your own.
+
+CV and cover letter compiled with XeLaTeX — no external tooling.
+
+![CV page 1](https://raw.githubusercontent.com/julian-chung/applykit-template/demo/docs/example_cv-1.png)
+![CV page 2](https://raw.githubusercontent.com/julian-chung/applykit-template/demo/docs/example_cv-2.png)
+![Cover letter](https://raw.githubusercontent.com/julian-chung/applykit-template/demo/docs/example_cover_letter-1.png)
+
+PDFs: [example_cv.pdf](https://raw.githubusercontent.com/julian-chung/applykit-template/demo/docs/example_cv.pdf) | [example_cover_letter.pdf](https://raw.githubusercontent.com/julian-chung/applykit-template/demo/docs/example_cover_letter.pdf)
+
+---
+
 ## Dependencies
 
 ### TeX Live (with XeLaTeX)
