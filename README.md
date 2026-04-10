@@ -107,8 +107,8 @@ All fonts are bundled in `fonts/` — no system font installation needed beyond 
 
 ```latex
 \summaryAfalse
-\summaryBtrue   % ← this one is active
-\summaryCfalse
+\summaryBfalse
+\summaryCtrue   % ← this one is active
 ```
 
 Each flag maps to a variant defined in `content/summary.tex`. Add or modify variants as needed.
