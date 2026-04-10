@@ -1,0 +1,18 @@
+% Multiple summary variants let you switch framing with a single flag in main.tex.
+% Set one of \summaryAtrue, \summaryBtrue, or \summaryCtrue (others should be false).
+% Add more variants as needed (summaryD, summaryE, etc.).
+
+\ifsummaryA
+\section*{Summary}
+[Summary variant A — e.g. research-focused.]
+\fi
+
+\ifsummaryB
+\section*{Summary}
+[Summary variant B — e.g. industry or private sector.]
+\fi
+
+\ifsummaryC
+\section*{Summary}
+[Summary variant C — e.g. public service.]
+\fi

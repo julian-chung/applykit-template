@@ -1,0 +1,85 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{Inter}[
+  Path           = fonts/,
+  Extension      = .otf,
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+]
+\newfontface\displayfont{CalSans-SemiBold}[Path=fonts/, Extension=.ttf]
+\newfontface\sectionfont{CalSans-SemiBold}[Path=fonts/, Extension=.ttf]
+\usepackage[a4paper, top=0.55in, bottom=0.55in, left=0.65in, right=0.65in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{parskip}
+\usepackage[none]{hyphenat}
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\definecolor{accent}{HTML}{898989}
+
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=black, pdfborder={0 0 0}}
+
+\linespread{0.95}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% Section: bold, rule underneath
+\titleformat{\section}{\fontsize{13.5pt}{14.85pt}\selectfont\sectionfont}{}{0em}{\textcolor{accent}{\rule[-3pt]{3pt}{16pt}}\hspace{8pt}}[\vspace{-4pt}\rule{\textwidth}{0.5pt}]
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+
+% Flags for conditional summary variants — add as many as you need
+\newif\ifsummaryA
+\newif\ifsummaryB
+\newif\ifsummaryC
+
+% Set the active summary here
+\summaryAfalse
+\summaryBfalse
+\summaryCtrue
+
+% ---- Resume macros -------------------------------------------------------
+
+% Job/edu heading: {Organisation}{Location}{Role/Degree}{Dates}
+\newcommand{\resumeSubheading}[4]{%
+  \vspace{3pt}%
+  \noindent\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    \textbf{#1} & \small\textit{#2}\\
+    \textit{\small #3} & \textit{\small #4}\\
+  \end{tabular*}\nopagebreak\vspace{1pt}%
+}
+
+% Single-line heading: {Title}{Dates}
+\newcommand{\resumeOneLineHeading}[2]{%
+  \vspace{3pt}%
+  \noindent\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    #1 & \textit{\small #2}\\
+  \end{tabular*}\nopagebreak\vspace{1pt}%
+}
+
+\newenvironment{resumeItemList}{%
+  \begin{itemize}[leftmargin=1.4em, label=\textbullet, topsep=1pt,
+                  itemsep=0pt, parsep=0pt, partopsep=0pt]%
+  \small%
+}{\end{itemize}\vspace{2pt}}
+
+\newcommand{\resumeItem}[1]{\item #1}
+
+% -------------------------------------------------------------------------
+
+\begin{document}
+\pagestyle{empty}
+
+\input{content/header}
+\input{content/summary}
+\input{content/skills}
+\input{content/education}
+\input{content/experience}
+\input{content/projects}
+\input{content/publications}
+\input{content/engagements}
+
+\end{document}

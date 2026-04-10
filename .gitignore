@@ -1,0 +1,13 @@
+output/
+node_modules/
+.DS_Store
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.out
+*.toc
+*.bbl
+*.blg

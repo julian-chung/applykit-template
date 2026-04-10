@@ -1,0 +1,69 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{Inter}[
+  Path           = fonts/,
+  Extension      = .otf,
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+]
+\usepackage[a4paper, top=0.75in, bottom=1in, left=1.1in, right=1.1in]{geometry}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage[none]{hyphenat}
+\usepackage{fontawesome5}
+
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=black, pdfborder={0 0 0}}
+
+\linespread{0.95}
+\setlength{\parskip}{8pt}
+
+% Text alignment: use \raggedright (left-aligned) by default to avoid overfull
+% lines when hyphenation is disabled. If you prefer full justification, comment
+% out \raggedright and uncomment \emergencystretch instead — it gives LaTeX
+% extra spacing flexibility before overflowing.
+\raggedright
+% \setlength{\emergencystretch}{3em}
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{center}
+  {\normalsize\textbf{Your Name}}\\[8pt]
+  \small
+  \faEnvelope~\href{mailto:you@email.com}{you@email.com}\ \ $|$\ \
+  \faMobile*~0400\,000\,000
+\end{center}
+
+\vspace{6pt}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{8pt}
+
+[Date]
+
+\vspace{8pt}
+[Hiring Manager Name]\\
+[Team / Department]\\
+[Organisation]
+
+\vspace{8pt}
+\textbf{Re: [Role Title] --- [Reference / Req ID if applicable]}
+
+\vspace{8pt}
+Dear [Hiring Manager / Selection Panel],
+
+[Opening paragraph: e.g. why this role, why this organisation, a line talking about your relevant background.]
+
+[Body paragraph: e.g. specific experience that maps to the role requirements.]
+
+[Body paragraph: e.g. something that sets you apart.]
+
+[Closing paragraph: e.g. express genuine interest, invite next steps.]
+
+Yours sincerely,
+
+\vspace{8pt}
+\textbf{Your Name}
+
+\end{document}
