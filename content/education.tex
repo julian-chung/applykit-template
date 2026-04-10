@@ -3,6 +3,10 @@
 \resumeSubheading{University Name}{}{Degree Title}{Year -- Year}
 \begin{resumeItemList}
   \resumeItem{Optional: coursework, specialisation, or notable academic detail.}
+  % The \ifsummaryB block below only renders when \summaryBtrue is set in main.tex.
+  % Use this pattern anywhere in any content file to show or hide content
+  % depending on the active summary flag — e.g. show a thesis line for research
+  % roles (summaryB) but hide it for industry applications (summaryA or summaryC).
   \ifsummaryB
   \resumeItem{Optional: additional detail for specific roles or applications. (e.g. summaryB roles).}
   \fi

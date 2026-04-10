@@ -113,7 +113,15 @@ All fonts are bundled in `fonts/` — no system font installation needed beyond 
 
 Each flag maps to a variant defined in `content/summary.tex`. Add or modify variants as needed.
 
-The same flag pattern can be used in other sections (e.g. `education.tex`) to conditionally include or exclude content for specific applications.
+The same flag pattern can be used in any content file to conditionally show or hide content depending on the active flag. For example, you could show a thesis line in `education.tex` for research roles but hide it for industry applications:
+
+```latex
+\ifsummaryB
+\resumeItem{Thesis: "Your thesis title here."}
+\fi
+```
+
+This means a single set of content files can serve multiple application types — just flip the flag in `main.tex` and rebuild.
 
 ## The archive system
 
