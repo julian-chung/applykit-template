@@ -1,7 +1,7 @@
 # applykit
 *like overleaf, but for Dark Souls fans*
 
-A LaTeX toolkit for building tailored, version-controlled job applications — resumes, and cover letters — faster than you can say "entry-level role requiring 5 years' experience."
+A LaTeX toolkit for building tailored, version-controlled job applications — resumes and cover letters — faster than you can say "entry-level role requiring 5 years' experience."
 
 Built with XeLaTeX, bundled fonts, and a snapshot system that archives each application with its content and design settings so you can roll back, reuse, and iterate without starting from scratch.
 
@@ -62,7 +62,7 @@ sudo pacman -S texlive-fontawesome
 ## Project structure
 
 ```
-applykit/
+applykit-template/
 ├── main.tex                    # CV template — fonts, layout, flags
 ├── cover_letter_template.tex   # Cover letter template
 ├── snapshot.sh                 # Snapshot / archiving script (see below)
@@ -165,7 +165,7 @@ application:
   organisation: ExampleAnalytics
   role: data-analyst
   type: industry           # public-service | research | industry | nfp
-  req_id: "12345".         # job reference ID (from the listing)
+  req_id: "12345"          # job reference ID (from the listing)
   contact: hiring-team@example.com
   outcome: applied         # update this as it progresses
   notes: >
