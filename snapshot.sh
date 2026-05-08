@@ -64,17 +64,17 @@ cp *.pdf "$DEST/" 2>/dev/null || true
 echo "Copied files to $DEST/"
 
 # --- Extract design settings from main.tex ---
-FONT_PKG=$(grep -oP '(?<=\]\{)[^\}]+(?=\})' "$MAIN" | grep -v 'utf8\|T1\|none\|hyperref\|enumitem\|titlesec\|tabularx\|parskip\|hyphenat\|fontawesome\|geometry\|fontspec' | head -1 || echo "inter")
-FONT_SIZE=$(grep -oP '(?<=\\documentclass\[)\d+pt' "$MAIN" | head -1 || echo "unknown")
-PAPER=$(grep -oP '(?<=\\documentclass\[)[^\]]+' "$MAIN" | grep -oP '[a-z0-9]+paper' | head -1 || echo "unknown")
-TOP=$(grep -oP '(?<=top=)[^,\]]+' "$MAIN" | head -1 || echo "unknown")
-BOTTOM=$(grep -oP '(?<=bottom=)[^,\]]+' "$MAIN" | head -1 || echo "unknown")
-LEFT=$(grep -oP '(?<=left=)[^,\]]+' "$MAIN" | head -1 || echo "unknown")
-RIGHT=$(grep -oP '(?<=right=)[^,\]]+' "$MAIN" | head -1 || echo "unknown")
-LINESPREAD=$(grep -oP '(?<=\\linespread\{)[^\}]+' "$MAIN" | head -1 || echo "unknown")
-SEC_BEFORE=$(grep -oP '(?<=\\titlespacing\*\{\\section\}\{0pt\}\{)[^\}]+' "$MAIN" | head -1 || echo "unknown")
-SEC_AFTER=$(grep -oP '(?<=\\titlespacing\*\{\\section\}\{0pt\}\{[^\}]+\}\{)[^\}]+' "$MAIN" | head -1 || echo "unknown")
-ACTIVE_FLAG=$(grep -oP '\\summary[A-Z]true' "$MAIN" | head -1 | sed 's/\\//;s/true//' || echo "none")
+FONT_PKG=$(sed -n 's/.*]\([^{]*\){\([^}][^}]*\)}.*/\2/p' "$MAIN" | grep -v 'utf8\|T1\|none\|hyperref\|enumitem\|titlesec\|tabularx\|parskip\|hyphenat\|fontawesome\|geometry\|fontspec' | head -1 || echo "inter")
+FONT_SIZE=$(awk '/\\documentclass\[/{ line=$0; sub(/^.*\\documentclass\[/, "", line); sub(/\].*$/, "", line); split(line, opts, ","); for (i in opts) if (opts[i] ~ /^[0-9]+pt$/) { print opts[i]; exit } }' "$MAIN" | head -1 || echo "unknown")
+PAPER=$(awk '/\\documentclass\[/{ line=$0; sub(/^.*\\documentclass\[/, "", line); sub(/\].*$/, "", line); split(line, opts, ","); for (i in opts) if (opts[i] ~ /^[a-z0-9]+paper$/) { print opts[i]; exit } }' "$MAIN" | head -1 || echo "unknown")
+TOP=$(awk -v key="top" '/\\usepackage\[.*\]{geometry}/{ line=$0; sub(".*" key "[[:space:]]*=[[:space:]]*", "", line); sub(/,.*/, "", line); sub(/].*/, "", line); print line; exit }' "$MAIN" | head -1 || echo "unknown")
+BOTTOM=$(awk -v key="bottom" '/\\usepackage\[.*\]{geometry}/{ line=$0; sub(".*" key "[[:space:]]*=[[:space:]]*", "", line); sub(/,.*/, "", line); sub(/].*/, "", line); print line; exit }' "$MAIN" | head -1 || echo "unknown")
+LEFT=$(awk -v key="left" '/\\usepackage\[.*\]{geometry}/{ line=$0; sub(".*" key "[[:space:]]*=[[:space:]]*", "", line); sub(/,.*/, "", line); sub(/].*/, "", line); print line; exit }' "$MAIN" | head -1 || echo "unknown")
+RIGHT=$(awk -v key="right" '/\\usepackage\[.*\]{geometry}/{ line=$0; sub(".*" key "[[:space:]]*=[[:space:]]*", "", line); sub(/,.*/, "", line); sub(/].*/, "", line); print line; exit }' "$MAIN" | head -1 || echo "unknown")
+LINESPREAD=$(sed -n 's/.*\\linespread{\([^}]*\)}.*/\1/p' "$MAIN" | head -1 || echo "unknown")
+SEC_BEFORE=$(sed -n 's/.*\\titlespacing\*{\\section}{0pt}{\([^}]*\)}{[^}]*}.*/\1/p' "$MAIN" | head -1 || echo "unknown")
+SEC_AFTER=$(sed -n 's/.*\\titlespacing\*{\\section}{0pt}{[^}]*}{\([^}]*\)}.*/\1/p' "$MAIN" | head -1 || echo "unknown")
+ACTIVE_FLAG=$(sed -n 's/.*\\\(summary[A-Z]\)true.*/\1/p' "$MAIN" | head -1 || echo "none")
 
 # --- Write meta.yaml ---
 cat > "$DEST/meta.yaml" <<EOF
