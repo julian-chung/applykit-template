@@ -60,6 +60,7 @@ mkdir -p "$DEST"
 cp *.tex "$DEST/" 2>/dev/null || true
 cp content/*.tex "$DEST/" 2>/dev/null || true
 cp *.pdf "$DEST/" 2>/dev/null || true
+cp output/*.pdf "$DEST/" 2>/dev/null || true
 
 echo "Copied files to $DEST/"
 
